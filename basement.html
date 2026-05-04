@@ -1,57 +1,171 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Basement Finishing Barrie</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Basement Finishing Barrie | Arham Renovation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
 <style>
 body{
  margin:0;
- font-family:Montserrat;
- background:#111;
+ font-family:'Inter',sans-serif;
+ color:#333;
+}
+
+/* HERO */
+.hero{
+ background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+ url('https://images.unsplash.com/photo-1584622781867-4b0a3e5a6b6f?auto=format&fit=crop&w=1200&q=80') center/cover;
  color:white;
  text-align:center;
+ padding:120px 20px;
 }
 
-.section{
- padding:80px 20px;
+.hero h1{
+ font-family:'Playfair Display';
+ font-size:42px;
+ margin-bottom:10px;
 }
 
-.card{
- background:#1a1a1a;
- padding:25px;
- margin:20px auto;
- max-width:300px;
- border-radius:10px;
+.hero p{
+ font-size:18px;
+ opacity:0.9;
 }
 
 .btn{
+ display:inline-block;
+ margin-top:20px;
+ padding:14px 26px;
  background:#ff6a00;
- padding:12px 20px;
- text-decoration:none;
  color:white;
+ text-decoration:none;
  border-radius:6px;
+ font-weight:600;
+}
+
+/* SECTION */
+.section{
+ padding:70px 20px;
+ max-width:1100px;
+ margin:auto;
+}
+
+/* GRID */
+.grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+ gap:20px;
+}
+
+/* CARD */
+.card{
+ border:1px solid #eee;
+ padding:25px;
+ border-radius:10px;
+ background:white;
+ box-shadow:0 5px 15px rgba(0,0,0,0.05);
+}
+
+.card h3{
+ margin-top:0;
+}
+
+/* IMAGE SECTION */
+.image-section{
+ display:flex;
+ flex-wrap:wrap;
+ align-items:center;
+ gap:30px;
+}
+
+.image-section img{
+ width:100%;
+ max-width:500px;
+ border-radius:10px;
+}
+
+/* CTA */
+.cta{
+ background:#111;
+ color:white;
+ text-align:center;
+ padding:80px 20px;
+}
+
+/* BACK */
+.back{
+ text-align:center;
+ padding:30px;
 }
 </style>
 </head>
+
 <body>
 
-<div class="section">
+<!-- HERO -->
+<div class="hero">
  <h1>Basement Finishing in Barrie</h1>
- <p>Turn your basement into a beautiful living space</p>
-</div>
-
-<div class="section">
- <div class="card">Living rooms</div>
- <div class="card">Home offices</div>
- <div class="card">Rental units</div>
-</div>
-
-<div class="section">
+ <p>Turn your unused basement into a modern, functional living space</p>
  <a href="index.html#quote" class="btn">Get Free Quote</a>
 </div>
 
+<!-- FEATURES -->
 <div class="section">
- <a href="index.html">← Back Home</a>
+ <h2 style="text-align:center;font-family:Playfair Display;">What We Build</h2>
+
+ <div class="grid">
+  <div class="card">
+   <h3>Living Spaces</h3>
+   <p>Comfortable family rooms and entertainment areas.</p>
+  </div>
+
+  <div class="card">
+   <h3>Home Offices</h3>
+   <p>Quiet, professional workspaces in your home.</p>
+  </div>
+
+  <div class="card">
+   <h3>Rental Units</h3>
+   <p>Generate income with legal basement apartments.</p>
+  </div>
+
+  <div class="card">
+   <h3>Gyms & More</h3>
+   <p>Create a custom space for your lifestyle.</p>
+  </div>
+ </div>
+</div>
+
+<!-- IMAGE + TEXT -->
+<div class="section image-section">
+ <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80">
+
+ <div>
+  <h2 style="font-family:Playfair Display;">Why Choose Us</h2>
+  <p>With over 16 years of experience, Arham Renovation delivers high-quality basement finishing with attention to detail, proper insulation, and long-lasting results.</p>
+
+  <ul>
+   <li>✔ Professional workmanship</li>
+   <li>✔ Clean and modern finishes</li>
+   <li>✔ Transparent pricing</li>
+   <li>✔ Fast project completion</li>
+  </ul>
+ </div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+ <h2 style="font-family:Playfair Display;">Ready to Transform Your Basement?</h2>
+ <p>Get a free quote today and start your project</p>
+ <a href="index.html#quote" class="btn">Request Free Quote</a>
+</div>
+
+<!-- BACK -->
+<div class="back">
+ <a href="index.html">← Back to Home</a>
 </div>
 
 </body>
