@@ -11,9 +11,25 @@
 body {
  margin:0;
  font-family: 'Segoe UI', sans-serif;
- background: #0a0a0a;
- color: white;
- scroll-behavior: smooth;
+ color:white;
+ background:black;
+ overflow-x:hidden;
+}
+
+/* ANIMATED BACKGROUND */
+body::before {
+ content:"";
+ position:fixed;
+ width:100%;
+ height:100%;
+ background: radial-gradient(circle, rgba(0,255,255,0.1) 1px, transparent 1px);
+ background-size:40px 40px;
+ animation: move 10s linear infinite;
+ z-index:-1;
+}
+@keyframes move {
+ from {background-position:0 0;}
+ to {background-position:40px 40px;}
 }
 
 /* NAV */
@@ -21,18 +37,10 @@ nav {
  display:flex;
  justify-content:space-between;
  padding:15px 30px;
- background: rgba(0,0,0,0.8);
- backdrop-filter: blur(10px);
- position:sticky;
- top:0;
+ background:rgba(0,0,0,0.7);
+ backdrop-filter:blur(10px);
 }
-nav a {
- color:white;
- margin-left:20px;
- text-decoration:none;
- transition:0.3s;
-}
-nav a:hover { color:#00f7ff; }
+nav a { color:white; margin-left:20px; text-decoration:none; }
 
 /* HERO */
 .hero {
@@ -42,28 +50,20 @@ nav a:hover { color:#00f7ff; }
  justify-content:center;
  align-items:center;
  text-align:center;
- background: radial-gradient(circle at center, #111, #000);
 }
 .hero h1 {
- font-size:50px;
- text-shadow:0 0 20px #00f7ff;
+ font-size:55px;
+ text-shadow:0 0 20px cyan;
 }
 .btn {
- background:#00f7ff;
+ background:cyan;
  padding:12px 25px;
  border:none;
  color:black;
- border-radius:5px;
  cursor:pointer;
- box-shadow:0 0 15px #00f7ff;
- transition:0.3s;
+ border-radius:6px;
+ box-shadow:0 0 20px cyan;
 }
-.btn:hover {
- transform:scale(1.1);
-}
-
-/* SECTION */
-section { padding:70px 20px; text-align:center; }
 
 /* SERVICES */
 .grid {
@@ -72,33 +72,46 @@ section { padding:70px 20px; text-align:center; }
  justify-content:center;
 }
 .card {
- background:#111;
+ background:rgba(255,255,255,0.05);
+ backdrop-filter:blur(10px);
+ border:1px solid rgba(0,255,255,0.2);
  margin:15px;
- padding:25px;
+ padding:20px;
+ width:260px;
  border-radius:10px;
- width:250px;
  cursor:pointer;
  transition:0.3s;
- border:1px solid #00f7ff33;
 }
 .card:hover {
- transform:translateY(-10px);
- box-shadow:0 0 20px #00f7ff;
+ transform:scale(1.05);
+ box-shadow:0 0 20px cyan;
 }
-.card.active {
- background:#00f7ff;
- color:black;
-}
+.card p { display:none; }
+.card.active p { display:block; }
 
 /* GALLERY */
 .gallery img {
  width:280px;
  margin:10px;
  border-radius:10px;
+ cursor:pointer;
  transition:0.3s;
 }
-.gallery img:hover {
- transform:scale(1.1);
+.gallery img:hover { transform:scale(1.1); }
+
+/* IMAGE MODAL */
+#modal {
+ display:none;
+ position:fixed;
+ top:0; left:0;
+ width:100%; height:100%;
+ background:rgba(0,0,0,0.9);
+ justify-content:center;
+ align-items:center;
+}
+#modal img {
+ width:80%;
+ border-radius:10px;
 }
 
 /* FORM */
@@ -113,23 +126,17 @@ form input, form textarea {
 /* MAP */
 #map { height:400px; }
 
-/* CALL BUTTON */
+/* FLOAT BUTTON */
 .call-btn {
  position:fixed;
  bottom:20px;
  right:20px;
- background:#00f7ff;
+ background:cyan;
  color:black;
  padding:15px;
  border-radius:50px;
  text-decoration:none;
- box-shadow:0 0 15px #00f7ff;
-}
-
-/* FOOTER */
-footer {
- background:#000;
- padding:20px;
+ box-shadow:0 0 20px cyan;
 }
 </style>
 </head>
@@ -146,52 +153,57 @@ footer {
 </nav>
 
 <div class="hero">
- <h1>Future of Renovation</h1>
- <p>16+ Years of Experience | Modern Results</p>
+ <h1>Next Level Renovation</h1>
+ <p>16+ Years Experience</p>
  <button class="btn" onclick="scrollToQuote()">Get Free Quote</button>
 </div>
 
 <section id="services">
  <h2>Our Services</h2>
  <div class="grid">
-  <div class="card" onclick="toggleCard(this)">Kitchen Renovation</div>
-  <div class="card" onclick="toggleCard(this)">Bathroom Renovation</div>
-  <div class="card" onclick="toggleCard(this)">Basement Finishing</div>
-  <div class="card" onclick="toggleCard(this)">Full Home Renovation</div>
+  <div class="card" onclick="toggle(this)">
+   <h3>Kitchen</h3>
+   <p>Modern kitchen transformations with premium finishes.</p>
+  </div>
+  <div class="card" onclick="toggle(this)">
+   <h3>Bathroom</h3>
+   <p>Luxury bathroom upgrades with clean designs.</p>
+  </div>
+  <div class="card" onclick="toggle(this)">
+   <h3>Basement</h3>
+   <p>Convert unused space into functional living areas.</p>
+  </div>
  </div>
 </section>
 
 <section id="gallery">
  <h2>Our Work</h2>
  <div class="gallery">
-  <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80">
-  <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80">
-  <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=800&q=80">
+  <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" onclick="openModal(this)">
+  <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" onclick="openModal(this)">
  </div>
 </section>
 
+<div id="modal" onclick="closeModal()">
+ <img id="modalImg">
+</div>
+
 <section id="quote">
  <h2>Get a Free Quote</h2>
- <form onsubmit="alert('Quote Request Sent!'); return false;">
-  <input type="text" placeholder="Name" required><br>
-  <input type="email" placeholder="Email" required><br>
-  <input type="tel" placeholder="Phone" required><br>
-  <textarea placeholder="Describe your project"></textarea><br>
+ <form onsubmit="alert('Quote Sent!'); return false;">
+  <input type="text" placeholder="Name"><br>
+  <input type="email" placeholder="Email"><br>
+  <textarea placeholder="Project details"></textarea><br>
   <button class="btn">Submit</button>
  </form>
 </section>
 
 <section>
- <h2>Our Location</h2>
+ <h2>Location</h2>
  <div id="map"></div>
 </section>
 
 <a href="tel:6477051327" class="call-btn">📞</a>
-
-<footer>
- <p>647-705-1327 | arhambabar88@gmail.com</p>
- <p>© 2026 Arham Renovation</p>
-</footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
@@ -200,16 +212,22 @@ function scrollToQuote() {
  document.getElementById("quote").scrollIntoView({behavior:"smooth"});
 }
 
-function toggleCard(card) {
- card.classList.toggle("active");
+function toggle(el) {
+ el.classList.toggle("active");
+}
+
+function openModal(img) {
+ document.getElementById("modal").style.display="flex";
+ document.getElementById("modalImg").src=img.src;
+}
+
+function closeModal() {
+ document.getElementById("modal").style.display="none";
 }
 
 var map = L.map('map').setView([44.3894, -79.6903], 10);
-
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-
-L.marker([44.3894, -79.6903]).addTo(map)
-.bindPopup('Arham Renovation').openPopup();
+L.marker([44.3894, -79.6903]).addTo(map);
 </script>
 
 </body>
